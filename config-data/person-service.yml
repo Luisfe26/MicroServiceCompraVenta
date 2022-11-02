@@ -2,8 +2,8 @@ server:
   port: 8000
 
 spring:
-  autoconfigure:
-    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+  application:
+    exclude: DataSourceAutoConfiguration.class
   datasource:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost/client
