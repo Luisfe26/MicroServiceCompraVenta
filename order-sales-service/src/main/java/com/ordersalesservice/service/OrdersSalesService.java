@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.ordersalesservice.model.OrdersSales;
 import com.ordersalesservice.repository.OrdersSalesRepository;
 
@@ -13,8 +12,13 @@ import com.ordersalesservice.repository.OrdersSalesRepository;
 @Service
 public class OrdersSalesService {
 
-	@Autowired
+
 	private OrdersSalesRepository ordersSalesRepository;
+	
+    @Autowired
+    public OrdersSalesService(OrdersSalesRepository ordersSalesRepository) {
+        this.ordersSalesRepository = ordersSalesRepository;
+    }
 
 	public List<OrdersSales> getAll(){
 		return ordersSalesRepository.findAll();

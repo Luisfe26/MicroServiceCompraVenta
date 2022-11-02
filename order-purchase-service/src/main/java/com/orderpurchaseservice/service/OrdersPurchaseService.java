@@ -13,9 +13,15 @@ import com.orderpurchaseservice.repository.OrdersPurchaseRepository;
 @Service
 public class OrdersPurchaseService {
 	
-	@Autowired
+
 	private OrdersPurchaseRepository ordersPurchaseRepository;
 
+	
+    @Autowired
+    public OrdersPurchaseService(OrdersPurchaseRepository ordersPurchaseRepository) {
+        this.ordersPurchaseRepository = ordersPurchaseRepository;
+    }
+    
 	public List<OrdersPurchase> getAll(){
 		return ordersPurchaseRepository.findAll();
 	}

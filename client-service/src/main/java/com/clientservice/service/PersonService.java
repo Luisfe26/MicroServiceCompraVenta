@@ -22,7 +22,7 @@ public class PersonService {
 	private PersonRepository personRepository;
 
 
-	@Autowired(required = true)
+	@Autowired
     public PersonService(PersonRepository personRepository) {
         this.personRepository = personRepository;
         }
