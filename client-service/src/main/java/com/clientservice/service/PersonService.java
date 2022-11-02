@@ -19,7 +19,6 @@ import com.clientservice.repository.PersonRepository;
 @Service
 public class PersonService {
 
-	@Autowired
 	private PersonRepository personRepository;
 	
 	@Autowired
