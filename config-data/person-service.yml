@@ -8,4 +8,7 @@ spring:
     username: postgres
     password: 123456
   jpa:
-    generate-ddl: true
+    database: postgresql
+    show-sql: false
+    hibernate:
+      ddl-auto: update
