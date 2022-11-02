@@ -20,7 +20,13 @@ import com.clientservice.repository.PersonRepository;
 public class PersonService {
 
 	private PersonRepository personRepository;
-	
+
+
+	@Autowired(required = true)
+    public PersonService(PersonRepository personRepository) {
+        this.personRepository = personRepository;
+        }
+        
 	@Autowired
 	private RestTemplate restTemplate;
 	
