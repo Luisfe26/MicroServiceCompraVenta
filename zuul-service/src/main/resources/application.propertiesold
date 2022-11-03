@@ -1,0 +1,2 @@
+zuul.routes.clientservice.path=/**
+zuul.routes.clientservice.url=http://localhost:54842

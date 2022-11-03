@@ -6,7 +6,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
+
 
 import com.clientservice.feingclients.OrderPurchaseFeignClient;
 import com.clientservice.feingclients.OrderSalesFeignClient;
@@ -28,9 +28,6 @@ public class PersonService {
         }
         
 	@Autowired
-	private RestTemplate restTemplate;
-	
-	@Autowired
 	private OrderPurchaseFeignClient orderPurchaseFeignClient;
 	
 	@Autowired
@@ -51,12 +48,12 @@ public class PersonService {
 	}
 	
 	public List<OrdersPurchase> getOrdresPurchase(int idperson){
-		List<OrdersPurchase> ordersPurchase = restTemplate.getForObject("http://localhost:8001/orderspurchase/person/" + idperson, List.class);
+		List<OrdersPurchase> ordersPurchase = orderPurchaseFeignClient.getOrdersPurchase(idperson);
 				return ordersPurchase;
 	}
 	
 	public List<OrdersSales> getOrdersSales(int idperson){
-		List<OrdersSales> ordersSales = restTemplate.getForObject("http://localhost:8002/orderssales/person/" + idperson, List.class);
+		List<OrdersSales> ordersSales = orderSalesFeignClient.getOrdersSales(idperson);
 				return ordersSales;
 	}
 	
