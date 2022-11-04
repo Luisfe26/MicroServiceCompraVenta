@@ -62,7 +62,7 @@ public class PersonController {
 		return ResponseEntity.ok(ordersPurchase);
 	}
 
-	@CircuitBreaker(name = "orderSalesCB", fallbackMethod = "fallBackGetOrdreSales")
+	/**@CircuitBreaker(name = "orderSalesCB", fallbackMethod = "fallBackGetOrdreSales")*/
 	@GetMapping("/orderssales/{idperson}")
 	public ResponseEntity<List<OrdersSales>> listarOrdersSales(@PathVariable("idperson") int id) {
 		Person person = personSevice.getPersonById(id);
@@ -96,31 +96,31 @@ public class PersonController {
 		return ResponseEntity.ok(result);
 	}
 
-	private ResponseEntity<List<OrdersPurchase>> fallBackGetOrdrePurchase(@PathVariable("idperson") int id,
+    private ResponseEntity<List<OrdersPurchase>> fallBackGetOrdrePurchase(@PathVariable("idperson") int id,
 			RuntimeException exception) {
-		return new ResponseEntity("Las oredenes de compras del cliente" + id + "no estan disponibles intente mas tarde",
+		return new ResponseEntity("Las oredenes de compras del cliente no estan disponibles intente mas tarde",
 				HttpStatus.OK);
 	}
 
 	private ResponseEntity<List<OrdersSales>> fallBackGetOrdreSales(@PathVariable("idperson") int id,
 			RuntimeException exception) {
-		return new ResponseEntity("Las oredenes de ventas del cliente" + id + "no estan disponibles intente mas tarde",
+		return new ResponseEntity("Las oredenes de ventas del cliente no estan disponibles intente mas tarde",
 				HttpStatus.OK);
 	}
 
-	private ResponseEntity<List<OrdersPurchase>> fallBackSaveOrdrePurchase(@PathVariable("idperson") int id,
+	private ResponseEntity<OrdersPurchase> fallBackSaveOrdrePurchase(@PathVariable("idperson") int id,
 			@RequestBody OrdersPurchase ordersPurchase, RuntimeException exception) {
 		return new ResponseEntity("No se pudo procesar su oreden de compra intente mas tarde", HttpStatus.OK);
 	}
 
-	private ResponseEntity<List<OrdersSales>> fallBackSaveOrdreSales(@PathVariable("idperson") int id,
+	private ResponseEntity<OrdersSales> fallBackSaveOrdreSales(@PathVariable("idperson") int id,
 			@RequestBody OrdersSales OrdersSales, RuntimeException exception) {
 		return new ResponseEntity("No se pudo procesar su oreden de venta intente mas tarde", HttpStatus.OK);
 	}
 
-	private ResponseEntity<List<OrdersSales>> fallBackGetOrdres(@PathVariable("idperson") int id,
+	private ResponseEntity<Map<String, Object>> fallBackGetOrdres(@PathVariable("idperson") int id,
 			RuntimeException exception) {
-		return new ResponseEntity("Las oredenes cliente" + id + "no estan disponibles intente mas tarde",
+		return new ResponseEntity("Las oredenes cliente no estan disponibles intente mas tarde",
 				HttpStatus.OK);
 	}
 

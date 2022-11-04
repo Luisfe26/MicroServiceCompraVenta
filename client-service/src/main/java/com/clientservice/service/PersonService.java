@@ -6,7 +6,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import org.springframework.web.client.RestTemplate;
 
 import com.clientservice.feingclients.OrderPurchaseFeignClient;
 import com.clientservice.feingclients.OrderSalesFeignClient;
@@ -26,6 +26,9 @@ public class PersonService {
     public PersonService(PersonRepository personRepository) {
         this.personRepository = personRepository;
         }
+	
+	@Autowired
+	private RestTemplate restTemplate;
         
 	@Autowired
 	private OrderPurchaseFeignClient orderPurchaseFeignClient;
@@ -53,7 +56,8 @@ public class PersonService {
 	}
 	
 	public List<OrdersSales> getOrdersSales(int idperson){
-		List<OrdersSales> ordersSales = orderSalesFeignClient.getOrdersSales(idperson);
+		List<OrdersSales> ordersSales = restTemplate.getForObject("http://ordersSales-service/orderssales/orderssales/person/"+idperson, List.class);
+		/**List<OrdersSales> ordersSales = orderSalesFeignClient.getOrdersSales(idperson);*/
 				return ordersSales;
 	}
 	

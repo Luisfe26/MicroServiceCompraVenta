@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.clientservice.model.OrdersSales;
 
-@FeignClient(name = "orderSales-service", url = "http://localhost:65307")
+@FeignClient(name = "ORDERSSALES-SERVICE")
 @RequestMapping("/orderssales")
 public interface OrderSalesFeignClient {
 	
