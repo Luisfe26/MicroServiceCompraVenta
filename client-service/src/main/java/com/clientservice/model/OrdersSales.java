@@ -1,5 +1,13 @@
 package com.clientservice.model;
 
+
+
+import lombok.Builder;
+import lombok.Data;
+import lombok.Getter;
+
+@Getter
+@Data@Builder (toBuilder = true)
 public class OrdersSales {
 
 	private String fechaOrden;

@@ -62,7 +62,7 @@ public class PersonController {
 		return ResponseEntity.ok(ordersPurchase);
 	}
 
-	/**@CircuitBreaker(name = "orderSalesCB", fallbackMethod = "fallBackGetOrdreSales")*/
+	@CircuitBreaker(name = "orderSalesCB", fallbackMethod = "fallBackGetOrdreSales")
 	@GetMapping("/orderssales/{idperson}")
 	public ResponseEntity<List<OrdersSales>> listarOrdersSales(@PathVariable("idperson") int id) {
 		Person person = personSevice.getPersonById(id);
@@ -120,7 +120,7 @@ public class PersonController {
 
 	private ResponseEntity<Map<String, Object>> fallBackGetOrdres(@PathVariable("idperson") int id,
 			RuntimeException exception) {
-		return new ResponseEntity("Las oredenes cliente no estan disponibles intente mas tarde",
+		return new ResponseEntity("Las oredenes del cliente no estan disponibles intente mas tarde",
 				HttpStatus.OK);
 	}
 

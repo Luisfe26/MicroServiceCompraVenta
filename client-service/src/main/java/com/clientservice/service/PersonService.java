@@ -51,12 +51,13 @@ public class PersonService {
 	}
 	
 	public List<OrdersPurchase> getOrdresPurchase(int idperson){
-		List<OrdersPurchase> ordersPurchase = orderPurchaseFeignClient.getOrdersPurchase(idperson);
+		List<OrdersPurchase> ordersPurchase = restTemplate.getForObject("http://OrdersPurchase-service/orderspurchase/person/"+idperson,List.class);
+		/**List<OrdersPurchase> ordersPurchase = orderPurchaseFeignClient.getOrdersPurchase(idperson);*/
 				return ordersPurchase;
 	}
 	
 	public List<OrdersSales> getOrdersSales(int idperson){
-		List<OrdersSales> ordersSales = restTemplate.getForObject("http://ordersSales-service/orderssales/orderssales/person/"+idperson, List.class);
+		List<OrdersSales> ordersSales = restTemplate.getForObject("http://ordersSales-service/orderssales/person/"+idperson, List.class);
 		/**List<OrdersSales> ordersSales = orderSalesFeignClient.getOrdersSales(idperson);*/
 				return ordersSales;
 	}
