@@ -6,8 +6,8 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
-/**import org.springframework.http.HttpMethod;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;*/
+import org.springframework.http.HttpMethod;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -17,15 +17,17 @@ import org.springframework.web.filter.CorsFilter;
 public class ResourceServerConfig {
 
 
-	/**public void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/uaa/oauth/**").permitAll()
-				.antMatchers(HttpMethod.GET, "/catalogo/productos").hasAnyRole("ADMIN", "USER")
-				.antMatchers(HttpMethod.GET, "/catalogo/producto/{id}",
-						"/catalogo/actualizarCatalogo/{codigo}/{unidades}", "/compra/producto/{codigo}")
-				.hasAnyRole("ADMIN", "USER").antMatchers(HttpMethod.POST, "/catalogo/producto").hasRole("ADMIN")
-				.antMatchers(HttpMethod.DELETE, "/catalogo/producto/{codigo}").hasRole("ADMIN").anyRequest()
+	public void configure(HttpSecurity http) throws Exception {
+		http.authorizeRequests().antMatchers("/oauth/token").permitAll()
+				.antMatchers(HttpMethod.GET, "/person").hasAnyRole("ADMIN", "USER")
+				.antMatchers(HttpMethod.GET, "/person/orders/{idperson}",
+						"/person/orderssales/{idperson}", "/person/orderspurchase/{idperson}")
+				.hasAnyRole("ADMIN", "USER")
+				.antMatchers(HttpMethod.POST, "/person/orderssales/{idperson}", "/person/orderspurchase/{idperson}").hasAnyRole("ADMIN", "USER")
+				.antMatchers(HttpMethod.POST, "/person", "/orderssales", "/orderspurchase").hasAnyRole("ADMIN", "USER")
+				.anyRequest()
 				.authenticated().and().cors().configurationSource(corsConfigurationSource());
-	}*/
+	}
 
 	@Bean
 	public CorsConfigurationSource corsConfigurationSource() {

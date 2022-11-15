@@ -6,9 +6,6 @@ import java.util.Collection;
 import java.util.List;
 import javax.annotation.Resource;
 
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.provider.token.ConsumerTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
@@ -16,6 +13,7 @@ import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -32,7 +30,6 @@ public class UserController {
 		return principal;
 	}
 	
-	//@PreAuthorize("#oauth2.hasScope('write')")
 	@GetMapping("/scope")
 	public String prueba() {	
 		return "Pasamos la prueba";

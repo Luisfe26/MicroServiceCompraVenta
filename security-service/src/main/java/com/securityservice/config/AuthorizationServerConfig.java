@@ -132,24 +132,5 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 		JwtAccessTokenConverter tokenConverter = new JwtAccessTokenConverter();
 		tokenConverter.setSigningKey(env.getProperty("config.security.oauth.jwt.key"));
 		return tokenConverter;
-	}
-
-//	  Population Database only developer action
-//	  
-//	  @Value("classpath:schema.sql") private Resource schemaScript;
-//	  
-//	  @Value("classpath:data.sql") private Resource dataScript;
-//	 
-//	
-//	  private DatabasePopulator databasePopulator() { final
-//	  ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
-//	  populator.addScript(schemaScript); populator.addScript(dataScript); return
-//	  populator; }
-//	 
-//	
-//	  @Bean public DataSourceInitializer dataSourceInitializer(final DataSource
-//	  dataSource) { final DataSourceInitializer initializer = new
-//	  DataSourceInitializer(); initializer.setDataSource(dataSource);
-//	  initializer.setDatabasePopulator(databasePopulator()); return initializer; }
-	 
+	}	 
 }
