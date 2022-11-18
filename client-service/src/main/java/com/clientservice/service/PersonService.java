@@ -20,12 +20,15 @@ import com.clientservice.repository.PersonRepository;
 public class PersonService {
 
 	private PersonRepository personRepository;
-
+	
+	private PersonEventsService personEventsService;
 
 	@Autowired
-    public PersonService(PersonRepository personRepository) {
+    public PersonService(PersonRepository personRepository, PersonEventsService personEventsService) {
         this.personRepository = personRepository;
+        this.personEventsService = personEventsService;
         }
+	
 	
 	@Autowired
 	private RestTemplate restTemplate;
@@ -47,6 +50,7 @@ public class PersonService {
 	
 	public Person save(Person person) {
 		Person nuevaPerson = personRepository.save(person);
+		this.personEventsService.publish(person);
 		return nuevaPerson;
 	}
 	
@@ -100,4 +104,5 @@ public class PersonService {
 		}
 		return result;
 	}
+	
 }

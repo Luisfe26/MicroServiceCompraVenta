@@ -16,8 +16,10 @@ import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
 
+import lombok.Data;
 
 
+@Data
 @Entity
 @Table(name = "persona")
 public class Person {
